@@ -1,4 +1,6 @@
-bundle-dirindexer
-=================
+CarteBlanche bundle - Directory Indexer
+=======================================
 
-A simple directory contents indexer bundle for CarteBlanche
+A bundle to build directory indexing views such as Apache default indexing.
+
+This package is a bundle for the [CarteBlanche framework](https://github.com/php-carteblanche/carteblanche).

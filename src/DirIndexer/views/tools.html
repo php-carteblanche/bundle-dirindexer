@@ -1,0 +1,50 @@
+<?php
+if (!isset($breadcrumbs)) $page=array();
+if (!isset($page)) $page=array();
+$i=0;
+?>
+<div class="content-tools">
+<?php if (!empty($breadcrumbs)): ?>
+    <div class="float-left">
+    <?php $global_route = ''; ?>
+    <?php foreach ($breadcrumbs as $i=>$route): ?>
+        <?php $global_route .= '/'.$route; ?>
+    <a href="<?php echo build_url(array(
+        'controller'=>'dirindexer','path'=>$global_route
+    )); ?>" title="See this content">
+        <?php echo ucfirst($route); ?>
+    </a>
+        <?php if ($i<count($breadcrumbs)): ?>
+        &nbsp;&gt;&nbsp;
+        <?php endif; ?>
+    <?php endforeach; ?>
+    </div>
+<?php endif; ?>
+
+<?php if (!empty($page['previous']) || !empty($page['next'])): ?>
+    <div class="float-right">
+    <?php if (!empty($page['previous'])): ?>
+        <a href="<?php echo build_url(array(
+            'controller'=>'dirindexer','path'=>$page['previous']
+        )); ?>" title="See this content">
+        &lt; Previous
+        </a>
+    <?php endif; ?>
+
+    <?php if (!empty($page['previous']) && !empty($page['next'])): ?>
+    &nbsp;|&nbsp;
+    <?php endif; ?>
+
+    <?php if (!empty($page['next'])): ?>
+        <a href="<?php echo build_url(array(
+            'controller'=>'dirindexer','path'=>$page['next']
+        )); ?>" title="See this content">
+        Next &gt;
+        </a>
+    <?php endif; ?>
+    </div>
+<?php endif; ?>
+
+</div>
+<br class="clear" />
+
