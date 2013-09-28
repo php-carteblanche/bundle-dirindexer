@@ -18,6 +18,9 @@
         "atelierspierrot/webfilesystem": "dev-master",
         "carte-blanche/core": "dev-master"
     },
+    "require-dev": {
+        "carte-blanche/core": "dev-wip"
+    },
     "autoload": { 
         "psr-0": { "DirIndexer": "src" },
         "classmap": [ "src/DirIndexer/Controller" ]
