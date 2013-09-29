@@ -10,7 +10,7 @@ namespace DirIndexer\Controller;
 
 use \CarteBlanche\CarteBlanche;
 use \CarteBlanche\App\Container;
-use \CarteBlanche\App\Abstracts\AbstractController;
+use \CarteBlanche\Abstracts\AbstractController;
 use \CarteBlanche\Exception\NotFoundException;
 
 use DirIndexer\WebFilesystem\DirIndexerFile,
