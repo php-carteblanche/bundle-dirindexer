@@ -50,7 +50,11 @@ class Helper
         $_p = DirectoryHelper::slashDirname(
             CarteBlanche::getPath('web_path')
         );
-        return DirectoryHelper::slashDirname($_p._DIRINDEXER);
+        $dir_cfg = CarteBlanche::getContainer()->get('config')->get('dirindexer.root_dir');
+        if (!empty($dir_cfg)) {
+            $_p .= $dir_cfg;
+        }
+        return DirectoryHelper::slashDirname($_p);
     }
 
     public static function getBreadcrumbs($path = null)
@@ -207,7 +211,7 @@ class Helper
         return (
             $name!=='index.php' && 
             $name!=='dev.php' && 
-            $name!==_DIRINDEXER_README
+            $name!==CarteBlanche::getContainer()->get('config')->get('dirindexer.readme_filename')
         );
     }
     
