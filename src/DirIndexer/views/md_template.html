@@ -14,7 +14,7 @@ if (!isset($no_tools) || $no_tools!==true) {
     echo view(
         \DirIndexer\Controller\DirIndexer::$views_dir.'tools.html',
         array(
-            'breadcrumbs'=>$breadcrumbs,
+            'breadcrumb'=>$breadcrumb,
             'page'=>$page,
         )
     );

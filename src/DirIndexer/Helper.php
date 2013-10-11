@@ -60,9 +60,22 @@ class Helper
     public static function getBreadcrumbs($path = null)
     {
         $breadcrumbs = array();
+        $global_route = '';
         if (!empty($path)) {
             $parts = explode('/', str_replace(self::getBaseDirHttp(), '', $path));
-            $breadcrumbs = array_filter($parts);
+            $current = end($parts);
+            $parts = array_filter($parts);
+            foreach ($parts as $route) {
+                if ($route===$current) {
+                    continue;
+                }
+                $global_route .= (strlen($global_route) ? '/' : '').$route;
+                $breadcrumbs[] = array(
+                    'url'=>CarteBlanche::getContainer()->get('router')
+                        ->buildUrl(array('controller'=>'dirindexer', 'path'=>$global_route)),
+                    'title'=>self::buildPageTitle($route)
+                );
+            }
         }
         return $breadcrumbs;
     }
