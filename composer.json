@@ -14,10 +14,7 @@
         "atelierspierrot/patterns": "dev-master",
         "atelierspierrot/library": "dev-master",
         "atelierspierrot/webfilesystem": "dev-master",
-        "carte-blanche/core": "~0.1"
-    },
-    "require-dev": {
-        "carte-blanche/core": "~0.1@dev"
+        "carte-blanche/core": "dev-cb_wip"
     },
     "autoload": { 
         "psr-0": { "DirIndexer": "src" },
