@@ -50,15 +50,32 @@ class Helper
         $_p = DirectoryHelper::slashDirname(
             CarteBlanche::getPath('web_path')
         );
-        return DirectoryHelper::slashDirname($_p._DIRINDEXER);
+        $dir_cfg = CarteBlanche::getContainer()->get('config')->get('dirindexer.root_dir');
+        if (!empty($dir_cfg)) {
+            $_p .= $dir_cfg;
+        }
+        return DirectoryHelper::slashDirname($_p);
     }
 
     public static function getBreadcrumbs($path = null)
     {
         $breadcrumbs = array();
+        $global_route = '';
         if (!empty($path)) {
             $parts = explode('/', str_replace(self::getBaseDirHttp(), '', $path));
-            $breadcrumbs = array_filter($parts);
+            $current = end($parts);
+            $parts = array_filter($parts);
+            foreach ($parts as $route) {
+                if ($route===$current) {
+                    continue;
+                }
+                $global_route .= (strlen($global_route) ? '/' : '').$route;
+                $breadcrumbs[] = array(
+                    'url'=>CarteBlanche::getContainer()->get('router')
+                        ->buildUrl(array('controller'=>'dirindexer', 'path'=>$global_route)),
+                    'title'=>self::buildPageTitle($route)
+                );
+            }
         }
         return $breadcrumbs;
     }
@@ -207,7 +224,7 @@ class Helper
         return (
             $name!=='index.php' && 
             $name!=='dev.php' && 
-            $name!==_DIRINDEXER_README
+            $name!==CarteBlanche::getContainer()->get('config')->get('dirindexer.readme_filename')
         );
     }
     

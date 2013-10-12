@@ -1,23 +1,13 @@
 <?php
-if (!isset($breadcrumbs)) $page=array();
+if (!isset($breadcrumb)) $breadcrumb=array();
 if (!isset($page)) $page=array();
 $i=0;
 ?>
 <div class="content-tools">
-<?php if (!empty($breadcrumbs)): ?>
+
+<?php if (!empty($breadcrumb)): ?>
     <div class="float-left">
-    <?php $global_route = ''; ?>
-    <?php foreach ($breadcrumbs as $i=>$route): ?>
-        <?php $global_route .= '/'.$route; ?>
-    <a href="<?php echo build_url(array(
-        'controller'=>'dirindexer','path'=>$global_route
-    )); ?>" title="See this content">
-        <?php echo ucfirst($route); ?>
-    </a>
-        <?php if ($i<count($breadcrumbs)): ?>
-        &nbsp;&gt;&nbsp;
-        <?php endif; ?>
-    <?php endforeach; ?>
+        <?php echo @$breadcrumb; ?>
     </div>
 <?php endif; ?>
 

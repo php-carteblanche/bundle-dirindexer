@@ -10,7 +10,7 @@ namespace DirIndexer\Controller;
 
 use \CarteBlanche\CarteBlanche;
 use \CarteBlanche\App\Container;
-use \CarteBlanche\App\Abstracts\AbstractController;
+use \CarteBlanche\Abstracts\AbstractController;
 use \CarteBlanche\Exception\NotFoundException;
 
 use DirIndexer\WebFilesystem\DirIndexerFile,
@@ -62,20 +62,28 @@ class DirIndexer extends AbstractController
         $this->setPath($path);
         $dbfile = new DirIndexerFile($this->getpath());
         $file_content = file_get_contents($dbfile->getRealpath());
+
+        $title = Helper::buildPageTitle($this->getPath());
+        $breadcrumb = new \Tool\Breadcrumb(array(
+            'home'=>$this->getContainer()->get('router')->buildUrl(array('controller'=>'dirindexer')),
+            'current'=>$title,
+            'links'=>Helper::getBreadcrumbs($this->getPath())
+        ));
+
         $_txt = new \Tool\Text(array(
             'original_str'=>$file_content,
             'markdown'=>$dbfile->getExtension()==='md'
         ));
         $tpl_params = array(
             'page' => $dbfile->getDirIndexerStack(),
-            'breadcrumbs' => Helper::getBreadcrumbs($this->getPath()),
+            'breadcrumb' => $breadcrumb,
             'content'=>$_txt,
         );
 
-        $tpl_params['title'] = Helper::buildPageTitle($this->getPath());
+        $tpl_params['title'] = $title;
         if (empty($tpl_params['title'])) {
-            if (!empty($tpl_params['breadcrumbs'])) {
-                $tpl_params['title'] = Helper::buildPageTitle(end($tpl_params['breadcrumbs']));
+            if (!empty($tpl_params['breadcrumb'])) {
+                $tpl_params['title'] = Helper::buildPageTitle(end($tpl_params['breadcrumb']));
             } else {
                 $tpl_params['title'] = _T('Home');
             }
@@ -108,9 +116,16 @@ class DirIndexer extends AbstractController
             return $this->fileAction($index);
         }
 
+        $title = Helper::buildPageTitle($this->getPath());
+        $breadcrumb = new \Tool\Breadcrumb(array(
+            'home'=>$this->getContainer()->get('router')->buildUrl(array('controller'=>'dirindexer')),
+            'current'=>$title,
+            'links'=>Helper::getBreadcrumbs($this->getPath())
+        ));
+
         $tpl_params = array(
             'page' => $dbfile->getDirIndexerStack(),
-            'breadcrumbs' => Helper::getBreadcrumbs($this->getPath()),
+            'breadcrumb' => $breadcrumb,
             'content'=>$dbfile->getDirIndexerScanStack()
         );
 
@@ -137,10 +152,10 @@ class DirIndexer extends AbstractController
 */
         }
 
-        $tpl_params['title'] = Helper::buildPageTitle($this->getPath());
+        $tpl_params['title'] = $title;
         if (empty($tpl_params['title'])) {
-            if (!empty($tpl_params['breadcrumbs'])) {
-                $tpl_params['title'] = Helper::buildPageTitle(end($tpl_params['breadcrumbs']));
+            if (!empty($tpl_params['breadcrumb'])) {
+                $tpl_params['title'] = Helper::buildPageTitle(end($tpl_params['breadcrumb']));
             } else {
                 $tpl_params['title'] = _T('Home');
             }

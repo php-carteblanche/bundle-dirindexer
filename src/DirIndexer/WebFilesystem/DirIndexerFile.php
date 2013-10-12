@@ -8,14 +8,16 @@
 
 namespace DirIndexer\WebFilesystem;
 
-use DirIndexer\Helper;
+use \CarteBlanche\CarteBlanche;
 
-use WebFilesystem\WebFilesystem,
-    WebFilesystem\WebFileInfo,
-    WebFilesystem\WebFilesystemIterator,
-    WebFilesystem\Finder;
+use \DirIndexer\Helper;
 
-use Library\Helper\Directory as DirectoryHelper;
+use \WebFilesystem\WebFilesystem,
+    \WebFilesystem\WebFileInfo,
+    \WebFilesystem\WebFilesystemIterator,
+    \WebFilesystem\Finder;
+
+use \Library\Helper\Directory as DirectoryHelper;
 
 use \FilesystemIterator;
 
@@ -41,7 +43,7 @@ class DirIndexerFile extends WebFileInfo
         $paths = $known_filenames = array();
         foreach($dir as $file) {
             $filename = $lang = null;
-            if ($file->isDir() && $file->getBasename()===_DIRINDEXER_WIPDIR) {
+            if ($file->isDir() && $file->getBasename()===CarteBlanche::getContainer()->get('config')->get('dirindexer.wip_dirname')) {
                 $hasWip = true;
             } else {
                 if ($file->isFile()) {
@@ -218,13 +220,13 @@ class DirIndexerFile extends WebFileInfo
 
     public function findReadme()
     {
-        $readme = DirectoryHelper::slashDirname($this->getRealPath())._DIRINDEXER_README;
+        $readme = DirectoryHelper::slashDirname($this->getRealPath()).CarteBlanche::getContainer()->get('config')->get('dirindexer.readme_filename');
         return file_exists($readme) ? $readme : null;
     }
 
     public function findIndex()
     {
-        $index = DirectoryHelper::slashDirname($this->getRealPath())._DIRINDEXER_INDEX;
+        $index = DirectoryHelper::slashDirname($this->getRealPath()).CarteBlanche::getContainer()->get('config')->get('dirindexer.index_filename');
         return file_exists($index) ? $index : null;
     }
 

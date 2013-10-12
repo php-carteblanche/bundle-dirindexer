@@ -1,10 +1,9 @@
 {
     "name": "carte-blanche/bundle-dirindexer",
     "type": "carte-blanche-bundle",
-    "description": "A filesystem contents indexer controller.",
+    "description": "A filesystem contents indexer",
     "keywords": [ "carte blanche", "bundles" ],
     "homepage": "http://github.com/php-carteblanche/bundle-dirindexer",
-    "version": "0.0.1-dev",
     "license": "Apache-2.0",
     "authors": [{
         "name": "Les Ateliers Pierrot & contributors",
@@ -12,14 +11,13 @@
         "homepage": "http://www.ateliers-pierrot.fr/"
     }],
     "require": {
-        "php": ">=5.3.0",
         "atelierspierrot/patterns": "dev-master",
         "atelierspierrot/library": "dev-master",
         "atelierspierrot/webfilesystem": "dev-master",
-        "carte-blanche/core": "dev-master"
+        "carte-blanche/core": "~0.1"
     },
     "require-dev": {
-        "carte-blanche/core": "dev-wip"
+        "carte-blanche/core": "~0.1@dev"
     },
     "autoload": { 
         "psr-0": { "DirIndexer": "src" },
@@ -30,6 +28,9 @@
     }],
     "extra": {
         "views": "src/DirIndexer/views",
-        "carte-blanche-configs": [ "config/dirindexer_config.ini" ]
+        "carte-blanche-configs": [ "config/dirindexer_config.ini" ],
+        "branch-alias": {
+            "dev-master": "0.1-dev"
+        }
     }
 }
