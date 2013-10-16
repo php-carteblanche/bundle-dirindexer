@@ -11,7 +11,7 @@
         "homepage": "http://www.ateliers-pierrot.fr/"
     }],
     "require": {
-        "atelierspierrot/webfilesystem": "dev-master",
+        "atelierspierrot/webfilesystem": "1.*",
         "carte-blanche/core": "dev-cb_wip"
     },
     "autoload": { 
