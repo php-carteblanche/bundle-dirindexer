@@ -1,6 +1,6 @@
 <?php
 echo view(
-    \DirIndexer\Controller\DirIndexer::$views_dir.'tools.html',
+    \DirIndexer\Controller\DirIndexer::$views_dir.'tools',
     array(
         'breadcrumbs'=>$breadcrumbs,
         'page'=>$page,
@@ -90,7 +90,7 @@ echo view(
 <?php if (!empty($readme)): ?>
 <?php
 echo view(
-    \DirIndexer\Controller\DirIndexer::$views_dir.'md_template.html',
+    \DirIndexer\Controller\DirIndexer::$views_dir.'md_template',
     array(
         'content'=>$readme,
         'no_tools'=>true,
