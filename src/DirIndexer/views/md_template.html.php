@@ -12,7 +12,7 @@ echo '</pre>';
 
 if (!isset($no_tools) || $no_tools!==true) {
     echo view(
-        \DirIndexer\Controller\DirIndexer::$views_dir.'tools.html',
+        \DirIndexer\Controller\DirIndexer::$views_dir.'tools',
         array(
             'breadcrumb'=>$breadcrumb,
             'page'=>$page,

@@ -89,7 +89,7 @@ class DirIndexer extends AbstractController
             }
         }
 
-		return array(self::$views_dir.'md_template.html', $tpl_params);
+		return array(self::$views_dir.'md_template', $tpl_params);
 /*
         $md_parser = $this->docbook->getMarkdownParser();
         $md_content = $md_parser->transformSource($this->getPath());
@@ -161,7 +161,7 @@ class DirIndexer extends AbstractController
             }
         }
 
-		return array(self::$views_dir.'dirindex_template.html', $tpl_params);
+		return array(self::$views_dir.'dirindex_template', $tpl_params);
 /*
         $dir_content = $this->docbook->display($dbfile->getDirIndexerScanStack(), 'dirindex');
 
