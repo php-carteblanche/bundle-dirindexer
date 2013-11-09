@@ -30,9 +30,13 @@ class DirIndexerBundle
             ->get('dirindexer');
         $dirindexer_web_dir = isset($cfg['root_dir']) ? $cfg['root_dir'] : null;
         if (!empty($dirindexer_web_dir)) {
-            DirectoryHelper::ensureExists(
-                DirectoryHelper::slashDirname(CarteBlanche::getPath('web_path')) . $dirindexer_web_dir
-            );
+            $indexer_path = DirectoryHelper::slashDirname(CarteBlanche::getPath('web_path')) . $dirindexer_web_dir;
+            @DirectoryHelper::ensureExists($indexer_path);
+            if (!file_exists($indexer_path) || !is_dir($indexer_path)) {
+                CarteBlanche::getKernel()->addBootError(
+                    sprintf("Can't create web directory '%s' for directory indexer bundle!", $dirindexer_web_dir)
+                );
+            }
         }
 
         $test_cfg = CarteBlanche::getContainer()->get('config')->get('dirindexer.root_dir');
