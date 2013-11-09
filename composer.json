@@ -12,8 +12,8 @@
     }],
     "require": {
         "atelierspierrot/webfilesystem": "1.*",
-        "carte-blanche/core": "dev-cb_wip",
-        "carte-blanche/installer": "dev-cb_wip"
+        "carte-blanche/core": "dev-master",
+        "carte-blanche/installer": "dev-master"
     },
     "autoload": { 
         "psr-0": { "DirIndexer": "src" },
