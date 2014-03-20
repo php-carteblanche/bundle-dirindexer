@@ -1,17 +1,20 @@
 <?php
 /**
- * PHP/Apache/Markdown DirIndexer
- * @package     DirIndexer
- * @license     GPL-v3
- * @link        https://github.com/atelierspierrot/docbook
+ * This file is part of the CarteBlanche PHP framework
+ * (c) Pierre Cassat and contributors
+ * 
+ * Sources <http://github.com/php-carteblanche/bundle-dirindexer>
+ *
+ * License Apache-2.0
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
 namespace DirIndexer\WebFilesystem;
 
 use DirIndexer\Helper;
-
-use WebFilesystem\FilesystemIterator,
-    WebFilesystem\WebRecursiveDirectoryIterator;
+use WebFilesystem\FilesystemIterator;
+use WebFilesystem\WebRecursiveDirectoryIterator;
 
 /**
  */

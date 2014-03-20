@@ -1,9 +1,13 @@
 <?php
 /**
- * PHP/Apache/Markdown DirIndexer
- * @package     DirIndexer
- * @license     GPL-v3
- * @link        https://github.com/atelierspierrot/docbook
+ * This file is part of the CarteBlanche PHP framework
+ * (c) Pierre Cassat and contributors
+ * 
+ * Sources <http://github.com/php-carteblanche/bundle-dirindexer>
+ *
+ * License Apache-2.0
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
 namespace DirIndexer\Controller;
@@ -91,9 +95,9 @@ class DirIndexer extends AbstractController
 
 		return array(self::$views_dir.'md_template', $tpl_params);
 /*
-        $md_parser = $this->docbook->getMarkdownParser();
+        $md_parser = $this->book->getMarkdownParser();
         $md_content = $md_parser->transformSource($this->getPath());
-        $content = $this->docbook->display(
+        $content = $this->book->display(
             $md_content->getBody(),
             'content',
             array(
@@ -139,9 +143,9 @@ class DirIndexer extends AbstractController
             ));
             $tpl_params['readme'] = $_txt;
 /*
-//            $md_parser = $this->docbook->getMarkdownParser();
+//            $md_parser = $this->book->getMarkdownParser();
 //            $md_content = $md_parser->transformSource($readme);
-            $readme_content = $this->docbook->display(
+            $readme_content = $this->book->display(
                 $md_content->getBody(),
                 'content',
                 array(
@@ -163,7 +167,7 @@ class DirIndexer extends AbstractController
 
 		return array(self::$views_dir.'dirindex_template', $tpl_params);
 /*
-        $dir_content = $this->docbook->display($dbfile->getDirIndexerScanStack(), 'dirindex');
+        $dir_content = $this->book->display($dbfile->getDirIndexerScanStack(), 'dirindex');
 
         return array('default', $dir_content.$readme_content, $tpl_params);
 */
@@ -172,7 +176,7 @@ class DirIndexer extends AbstractController
     public function htmlOnlyAction($path)
     {
         $this->setPath($path);
-        $md_parser = $this->docbook->getMarkdownParser();
+        $md_parser = $this->book->getMarkdownParser();
         $md_content = $md_parser->transformSource($this->getPath());
         return array('layout_empty_html', 
             $md_content->getBody(),
@@ -183,21 +187,21 @@ class DirIndexer extends AbstractController
     public function plainTextAction($path)
     {
         $this->setPath($path);
-        $ctt = $this->docbook->getResponse()->flush(file_get_contents($this->getPath()));
+        $ctt = $this->book->getResponse()->flush(file_get_contents($this->getPath()));
         return array('layout_empty_txt', $ctt);
     }
 
     public function downloadAction($path)
     {
         $this->setPath($path);
-        $this->docbook->getResponse()->download($path, 'text/plain');
+        $this->book->getResponse()->download($path, 'text/plain');
         exit;
     }
 
     public function searchAction($path)
     {
         $this->setPath($path);
-        $search = $this->docbook->getRequest()->getGet('s');
+        $search = $this->book->getRequest()->getGet('s');
         if (empty($search)) return $this->indexAction($path);
 
         $_s = Helper::processDirIndexerSearch($search, $this->getPath());
@@ -209,7 +213,7 @@ class DirIndexer extends AbstractController
             'title' => _T('Search for "%search_str%"', array('search_str'=>$search))
         );
 
-        $search_content = $this->docbook->display($_s, 'search', array(
+        $search_content = $this->book->display($_s, 'search', array(
             'search_str' => $search,
             'path' => Helper::buildPageTitle($this->getPath()),
         ));

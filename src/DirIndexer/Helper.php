@@ -1,23 +1,24 @@
 <?php
 /**
- * PHP/Apache/Markdown DirIndexer
- * @package     DirIndexer
- * @license     GPL-v3
- * @link        https://github.com/atelierspierrot/docbook
+ * This file is part of the CarteBlanche PHP framework
+ * (c) Pierre Cassat and contributors
+ * 
+ * Sources <http://github.com/php-carteblanche/bundle-dirindexer>
+ *
+ * License Apache-2.0
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
 namespace DirIndexer;
 
 use \CarteBlanche\CarteBlanche;
-
-use Library\Command,
-    Library\Helper\Directory as DirectoryHelper,
-    Library\Helper\Url as UrlHelper;
-
-use \DateTime,
-    \ReflectionMethod;
-
-use WebFilesystem\WebFilesystem;
+use \Library\Command;
+use \Library\Helper\Directory as DirectoryHelper;
+use \Library\Helper\Url as UrlHelper;
+use \DateTime;
+use \ReflectionMethod;
+use \WebFilesystem\WebFilesystem;
 
 /**
  */
@@ -48,7 +49,7 @@ class Helper
     public static function getBaseDirHttp()
     {
         $_p = DirectoryHelper::slashDirname(
-            CarteBlanche::getPath('web_path')
+            CarteBlanche::getPath('web_dir')
         );
         $dir_cfg = CarteBlanche::getContainer()->get('config')->get('dirindexer.root_dir');
         if (!empty($dir_cfg)) {
@@ -113,12 +114,12 @@ class Helper
         return $time;
     }
 
-    public static function getRoute($path, $type = null, $with_interface = false)
+    public static function getRoute($path, $type = null)
     {
         $route = $path;
         $rel_path = str_replace(self::getBaseDirHttp(), '', $path);
         $add_last_slash = !empty($rel_path) && file_exists($path) && is_dir($path);
-        $returned_route = (true===$with_interface ? FrontController::DOCBOOK_INTERFACE.'?' : !empty($rel_path) ? '/' : '')
+        $returned_route = (!empty($rel_path) ? '/' : '')
             .trim($rel_path, '/')
             .($add_last_slash ? '/' : '')
             .(!empty($type) ? ($add_last_slash ? '' : '/').$type : '');
