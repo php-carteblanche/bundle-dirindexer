@@ -12,19 +12,20 @@
 
 namespace DirIndexer\WebFilesystem;
 
-use DirIndexer\Helper;
-use WebFilesystem\FilesystemIterator;
-use WebFilesystem\WebRecursiveDirectoryIterator;
+use \DirIndexer\Helper;
+use \WebFilesystem\FilesystemIterator;
+use \WebFilesystem\WebRecursiveDirectoryIterator;
 
 /**
  */
-class DirIndexerRecursiveDirectoryIterator extends WebRecursiveDirectoryIterator
+class DirIndexerRecursiveDirectoryIterator
+    extends WebRecursiveDirectoryIterator
 {
 
     public function __construct(
         $path, $flags = 16432,
-        $file_validation_callback = "DirIndexer\WebFilesystem\DirIndexerRecursiveDirectoryIterator::fileValidation",
-        $directory_validation_callback = "DirIndexer\WebFilesystem\DirIndexerRecursiveDirectoryIterator::dirValidation"
+        $file_validation_callback = "DirIndexer\\WebFilesystem\\DirIndexerRecursiveDirectoryIterator::fileValidation",
+        $directory_validation_callback = "DirIndexer\\WebFilesystem\\DirIndexerRecursiveDirectoryIterator::dirValidation"
     ) {
         parent::__construct($path, $flags, $file_validation_callback, $directory_validation_callback);
     }

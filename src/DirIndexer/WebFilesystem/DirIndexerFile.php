@@ -16,10 +16,10 @@ use \CarteBlanche\CarteBlanche;
 
 use \DirIndexer\Helper;
 
-use \WebFilesystem\WebFilesystem,
-    \WebFilesystem\WebFileInfo,
-    \WebFilesystem\WebFilesystemIterator,
-    \WebFilesystem\Finder;
+use \WebFilesystem\WebFilesystem;
+use \WebFilesystem\WebFileInfo;
+use \WebFilesystem\WebFilesystemIterator;
+use \WebFilesystem\Finder;
 
 use \Library\Helper\Directory as DirectoryHelper;
 
@@ -27,7 +27,8 @@ use \FilesystemIterator;
 
 /**
  */
-class DirIndexerFile extends WebFileInfo
+class DirIndexerFile
+    extends WebFileInfo
 {
 
     protected $docbook;

@@ -17,9 +17,9 @@ use \CarteBlanche\App\Container;
 use \CarteBlanche\Abstracts\AbstractController;
 use \CarteBlanche\Exception\NotFoundException;
 
-use DirIndexer\WebFilesystem\DirIndexerFile,
-    DirIndexer\WebFilesystem\DirIndexerRecursiveDirectoryIterator,
-    DirIndexer\Helper;
+use DirIndexer\WebFilesystem\DirIndexerFile;
+use DirIndexer\WebFilesystem\DirIndexerRecursiveDirectoryIterator;
+use DirIndexer\Helper;
 /*
 use DirIndexer\FrontController,
     DirIndexer\Helper,
@@ -28,8 +28,7 @@ use DirIndexer\FrontController,
 */
 use Library\Helper\Directory as DirectoryHelper;
 
-use Markdown\Parser,
-    Markdown\ExtraParser;
+use MarkdownExtended\MarkdownExtended;
 
 /**
  */
@@ -38,28 +37,28 @@ class DirIndexer extends AbstractController
 
     protected $path;
 
-	/**
-	 * The directory where to search the views files
-	 */
-	static $views_dir = 'DirIndexer/views/';
+    /**
+     * The directory where to search the views files
+     */
+    static $views_dir = 'DirIndexer/views/';
 
-	/**
-	 */
-	public function indexAction($path = '', $offset = 0)
-	{
-	    $path = urldecode($path);
-		$_mod = $this->getContainer()->get('request')->getUrlArg('model');
+    /**
+     */
+    public function indexAction($path = '', $offset = 0)
+    {
+        $path = urldecode($path);
+        $_mod = $this->getContainer()->get('request')->getUrlArg('model');
         $_path = DirectoryHelper::slashDirname(Helper::getBaseDirHttp()).$path;
         if (@is_dir($_path))
             return self::directoryAction($_path, $offset);
         else
             return self::fileAction($_path);
-	}
+    }
 
-	public function emptyAction($altdb = null)
-	{
-		$this->getContainer()->get('router')->redirect();
-	}
+    public function emptyAction($altdb = null)
+    {
+        $this->getContainer()->get('router')->redirect();
+    }
 
     public function fileAction($path)
     {
@@ -93,7 +92,7 @@ class DirIndexer extends AbstractController
             }
         }
 
-		return array(self::$views_dir.'md_template', $tpl_params);
+        return array(self::$views_dir.'md_template', $tpl_params);
 /*
         $md_parser = $this->book->getMarkdownParser();
         $md_content = $md_parser->transformSource($this->getPath());
@@ -165,7 +164,7 @@ class DirIndexer extends AbstractController
             }
         }
 
-		return array(self::$views_dir.'dirindex_template', $tpl_params);
+        return array(self::$views_dir.'dirindex_template', $tpl_params);
 /*
         $dir_content = $this->book->display($dbfile->getDirIndexerScanStack(), 'dirindex');
 

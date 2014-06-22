@@ -203,13 +203,13 @@ class Helper
         return array(
             'date'              => new DateTime(),
             'timezone'          => date_default_timezone_get(),
-			'php_uname'         => php_uname(),
-			'php_version'       => phpversion(),
-			'php_sapi_name'     => php_sapi_name(),
-			'apache_version'    => apache_get_version(),
-			'user_agent'        => $_SERVER['HTTP_USER_AGENT'],
-			'git_clone'         => DirectoryHelper::isGitClone(CarteBlanche::getPath('root_path')),
-			'request'           => UrlHelper::getRequestUrl(),
+            'php_uname'         => php_uname(),
+            'php_version'       => phpversion(),
+            'php_sapi_name'     => php_sapi_name(),
+            'apache_version'    => apache_get_version(),
+            'user_agent'        => $_SERVER['HTTP_USER_AGENT'],
+            'git_clone'         => DirectoryHelper::isGitClone(CarteBlanche::getPath('root_path')),
+            'request'           => UrlHelper::getRequestUrl(),
         );
     }
 
