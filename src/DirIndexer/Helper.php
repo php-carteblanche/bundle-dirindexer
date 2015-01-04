@@ -100,7 +100,7 @@ class Helper
             }
             if (!@mkdir($directory, 0777, true)) {
                 throw new DirIndexerRuntimeException(
-                    sprintf('An error occured while trying to create directory "%s"!', $directory)
+                    sprintf('An error occurred while trying to create directory "%s"!', $directory)
                 );
             }
         }
