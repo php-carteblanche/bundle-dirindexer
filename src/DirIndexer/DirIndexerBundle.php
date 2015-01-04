@@ -12,24 +12,18 @@
 namespace DirIndexer;
 
 use \CarteBlanche\CarteBlanche;
+use \CarteBlanche\Abstracts\AbstractBundle;
 use \Library\Helper\Directory as DirectoryHelper;
 
 class DirIndexerBundle
+    extends AbstractBundle
 {
 
-    protected static $bundle_config_file = 'dirindexer_config.ini';
-
-    public function __construct()
+    public function init(array $options = array())
     {
-        $cfgfile = \CarteBlanche\App\Locator::locateConfig(self::$bundle_config_file);
-        if (!file_exists($cfgfile)) {
-            throw new ErrorException( 
-                sprintf('Dirindex bundle configuration file not found in "%s" [%s]!', $this->getPath('config_dir'), $cfgfile)
-            );
-        }
-        $cfg = CarteBlanche::getContainer()->get('config')
-            ->load($cfgfile, true, 'dirindexer')
-            ->get('dirindexer');
+        parent::init($options);
+        $cfg = $this->getOptions();
+
         $dirindexer_web_dir = isset($cfg['root_dir']) ? $cfg['root_dir'] : null;
         if (!empty($dirindexer_web_dir)) {
             $indexer_path = DirectoryHelper::slashDirname(CarteBlanche::getPath('web_path')) . $dirindexer_web_dir;
