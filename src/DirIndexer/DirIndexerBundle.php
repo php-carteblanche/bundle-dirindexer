@@ -19,6 +19,10 @@ class DirIndexerBundle
     extends AbstractBundle
 {
 
+    /**
+     * @param   array $options
+     * @return  mixed
+     */
     public function init(array $options = array())
     {
         parent::init($options);
