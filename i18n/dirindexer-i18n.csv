@@ -1,0 +1,42 @@
+index;fr;en
+;Précédent;Previous
+;Suivant;Next
+;Voir le contenu précédent;See previous content
+;Voir le contenu suivant;See next content
+;Type;Type
+;Nom;Name
+;Dernière mise à jour;Last update
+;Taille;Size
+;Description;Description
+;Voir ce contenu;See this content
+;Voir le travail en cours dans ce chapitre;See the work-in-progress of this chapter
+;"Ce dossier a une section ""travail-en-cours"".";"This folder has a ""wip"" section."
+;"Ce dossier est un clone ""GIT"" d'un dépôt de référence.";"This folder is a ""GIT"" clone of a remote repository."
+;Voir le dépôt distant: %url%;See distant repository: %url%
+;Voir la version HTML brute de ce contenu;See the plain HTML version of this file
+;Télécharger la version originale de ce contenu;Download original version of this file
+;Voir la version texte brut de ce contenu;See plain text version of this file
+;Taille du fichier: %size%;File size: %size%
+;Dernière mise à jour le %date%;Last update on %date%
+link_mask_title;Voir en ligne %%;See online %%
+mailto_mask_title;Contacter %%;Contact %%
+fn_link_title;Voir la note %%;See footnote %%
+fn_backlink_title;Retour au contenu;Return to content
+fng_link_title;Voir l'entrée du glossaire %%;See glossary entry %%
+fng_backlink_title;Retour au contenu;Return to content
+fnc_link_title;Voir la référence bibliographique %%;See bibliography reference %%
+fnc_backlink_title;Retour au contenu;Return to content
+toc_title;Table des matières;Table of contents
+permalink_mask_title;Copier l'URL comme un lien permanent vers ce titre: %%;Copy this link as a permanent link to this title: %%
+toc_item_title;Voir ce chapitre;Reach this section
+toc_backlink_title;Cliquez pour revenir au sommaire;Click to go back to table of contents
+sources_update_block;"Voir les sources de DocBook en ligne : <a href=""%url%"">%url%</a>";"Follow sources of DocBook online: <a href=""%url%"">%url%</a>"
+see_content_markdown;Voir ce contenu Markdown;See this markdown content
+see_content_image;Voir cette image;See this image
+see_content_document;Voir ce document;See this document
+see_content_file;Voir ce fichier;See this file
+see_content_directory;Voir le contenu du dossier;See this directory contents
+;Notes du document;Document notes
+;Glossaire du document;Document glossary
+;Citations du document;Document citations
+;Autres notes;Other footnotes

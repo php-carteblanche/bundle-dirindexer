@@ -24,6 +24,7 @@
     }],
     "extra": {
         "views": "src/DirIndexer/views",
+        "carte-blanche-i18n": [ "i18n/dirindexer-i18n.csv" ],
         "carte-blanche-configs": [ "config/dirindexer_config.ini" ],
         "branch-alias": {
             "dev-master": "0.1-dev"
